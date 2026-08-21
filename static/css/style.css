@@ -1,0 +1,271 @@
+*, *::before, *::after { 
+  box-sizing: border-box; 
+  margin: 0; 
+  padding: 0; 
+}
+
+body {
+  font-family: 'Lato', sans-serif;
+  background-color: #f5f5dc;
+  color: #2c2c2c;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.site-header {
+  background-color: #2ecc71;
+  padding: 16px 0;
+  text-align: center;
+}
+
+.site-title {
+  font-family: 'IM Fell English', serif;
+  font-size: 1.8rem;
+  color: #376015;
+  text-decoration: none;
+}
+
+.site-main {
+  flex: 1;
+  max-width: 1000px;
+  width: 100%;
+  margin: 32px auto;
+  padding: 0 20px;
+}
+
+.login-wrapper {
+  display: flex;
+  gap: 40px;
+  align-items: center;
+  margin-top: 40px;
+}
+
+.login-image-side {
+  flex: 1;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.login-image-side img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.login-form-side {
+  flex: 1;
+  text-align: center;
+}
+
+.login-form-side h1 {
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.login-form-side .latin {
+  font-family: 'IM Fell English', serif;
+  font-style: italic;
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+}
+
+.input-login {
+  width: 80%;
+  padding: 12px 20px;
+  margin-bottom: 15px;
+  background-color: #8c9783;
+  border: none;
+  border-radius: 20px;
+  color: white;
+  font-size: 1rem;
+}
+
+.input-login::placeholder { color: #d0d0d0; }
+
+.btn-login {
+  background-color: #2ecc71;
+  color: white;
+  border: none;
+  padding: 10px 30px;
+  border-radius: 15px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.greeting {
+  text-align: center;
+  font-family: 'IM Fell English', serif;
+  font-size: 1.6rem;
+  color: #2c2c2c;
+  margin-bottom: 30px;
+}
+
+.dashboard-banner {
+  background-color: #c8a96e;
+  padding: 30px 20px;
+  border-radius: 4px;
+  margin-bottom: 40px;
+}
+
+.dashboard-grid {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.dashboard-card {
+  background-color: #e8d9a8;
+  padding: 20px;
+  width: 30%;
+  text-align: center;
+  border: 1px solid #bda068;
+}
+
+.dashboard-card h3 {
+  font-family: 'IM Fell English', serif;
+  font-size: 1.1rem;
+  border-bottom: 1px solid #333;
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+}
+
+.dashboard-card .big-number {
+  font-size: 3rem;
+  font-family: 'IM Fell English', serif;
+}
+
+.bottom-nav {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 40px;
+  padding-top: 20px;
+}
+
+.bottom-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'IM Fell English', serif;
+  font-size: 1.4rem;
+  text-decoration: none;
+  color: #2c2c2c;
+}
+
+.book-columns { 
+  display: grid; 
+  grid-template-columns: repeat(3, 1fr); 
+  gap: 20px; 
+}
+
+.book-column-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-family: 'IM Fell English', serif;
+  font-size: 1.4rem;
+  margin-bottom: 15px;
+}
+
+.book-item { 
+  background-color: #ffffff; 
+  border: 1px solid #ccc;
+  padding: 15px; 
+  margin-bottom: 10px; 
+  text-align: center;
+  position: relative;
+}
+
+.book-item::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 6px;
+  background-color: #7f8c8d;
+}
+
+.book-item.reading::after { background-color: #e67e22; }
+.book-item.done::after { background-color: #2ecc71; }
+
+.conquistas-grid { 
+  display: grid; 
+  grid-template-columns: repeat(4, 1fr); 
+  gap: 15px; 
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.conquista-card { 
+  border-radius: 10px; 
+  padding: 20px 10px; 
+  text-align: center; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.bg-yellow { background-color: #fef0d9; }
+.bg-orange { background-color: #fce4ce; }
+.bg-gray   { background-color: #f2f2f2; }
+.bg-green  { background-color: #d1f2d1; }
+.bg-purple { background-color: #e0d4fc; }
+
+.conquista-card h4 { 
+  font-size: 0.9rem; 
+  font-weight: 700; 
+  margin-top: 10px;
+}
+
+.desafio-label {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-family: 'IM Fell English', serif;
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+  cursor: pointer;
+}
+
+.desafio-label input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  accent-color: #2c2c2c;
+}
+
+.page-title {
+  font-family: 'IM Fell English', serif;
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.progress-bar-wrap {
+    background-color: #e0e0d0; /* Tom bege claro do seu tema */
+    border-radius: 10px;
+    height: 12px;
+    width: 100%;
+    overflow: hidden; /* Garante que o preenchimento não saia das bordas */
+    margin: 10px 0;
+    border: 1px solid #c8c89a;
+}
+
+.progress-bar-fill {
+    background-color: #2ecc71; /* Verde esmeralda */
+    height: 100%;
+    transition: width 0.8s ease-in-out; /* Isso faz a barra "deslizar" ao atualizar */
+}
+
+@media (max-width: 768px) {
+  .login-wrapper { flex-direction: column; }
+  .dashboard-grid { flex-direction: column; }
+  .dashboard-card { width: 100%; }
+  .book-columns { grid-template-columns: 1fr; }
+  .conquistas-grid { grid-template-columns: repeat(2, 1fr); }
+  .bottom-nav { flex-wrap: wrap; }
+}

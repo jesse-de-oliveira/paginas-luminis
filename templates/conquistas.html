@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+
+  <h1 class="page-title">Conquistas</h1>
+  <p class="page-subtitle">seu progresso como leitor</p>
+
+  {% if conquistas %}
+    <div class="conquistas-grid">
+      {% for uc in conquistas %}
+        <div class="conquista-card unlocked">
+          <div class="icon">🏆</div>
+          <h4>{{ uc.conquista.nome }}</h4>
+          <p style="font-size:0.75rem; color:#555; margin-top:6px;">{{ uc.conquista.descricao }}</p>
+          <p style="font-size:0.72rem; color:#888; margin-top:8px;">{{ uc.data_conquista.strftime('%d/%m/%Y') }}</p>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="card-light text-center" style="max-width:480px; margin: 0 auto;">
+      <div style="font-size:2.5rem; margin-bottom:12px;">🏅</div>
+      <p style="color:#666; font-size:0.9rem;">Você ainda não tem conquistas.<br>Continue lendo para desbloquear!</p>
+      <a href="{{ url_for('listar_livros') }}" class="btn btn-green" style="margin-top:16px;">Ver meus livros</a>
+    </div>
+  {% endif %}
+
+  <div class="text-center mt-24">
+    <a href="{{ url_for('home') }}" style="font-size:0.85rem; color:#2ecc71; text-decoration:none;">← Voltar</a>
+  </div>
+
+{% endblock %}

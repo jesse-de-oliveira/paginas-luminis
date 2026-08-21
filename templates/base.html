@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Páginas Luminis</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  </head>
+  <body>
+    <header>
+      <a href="{{ url_for('home') }}" class="site-title">Páginas Luminis</a>
+    </header>
+
+    <nav class="site-nav">
+      {% if user %}
+        <div style="padding-bottom: 10px; border-bottom: 1px solid #e0e0e0; margin-bottom: 10px;">
+          <a href="{{ url_for('home') }}" style="color: #2ecc71; text-decoration: none; font-size: 0.9rem; font-weight: bold;">
+            « Voltar ao Dashboard
+          </a>
+        </div>
+        <a href="{{ url_for('home') }}" class="nav-link">🏠 Início</a>
+        <a href="{{ url_for('listar_livros') }}" class="nav-link">📚 Tracker</a>
+        <a href="{{ url_for('diario') }}" class="nav-link">📓 Diário</a>
+        <a href="{{ url_for('listar_frases') }}" class="nav-link">💬 Frases</a>
+        <a href="{{ url_for('listar_desafios') }}" class="nav-link">🎯 Desafios</a>
+        <a href="{{ url_for('conquistas') }}" class="nav-link">🏆 Conquistas</a>
+        <a href="{{ url_for('logout') }}" class="nav-link nav-logout">Sair ({{ user.username }})</a>
+      {% else %}
+        <a href="{{ url_for('login') }}" class="nav-link">Entrar</a>
+        <a href="{{ url_for('register') }}" class="nav-link">Cadastrar</a>
+      {% endif %}
+    </nav>
+    
+    <main class="site-main">
+      {% block content %}{% endblock %}
+    </main>
+
+    <footer class="site-footer">
+      <p><em>Litteris vita est.</em></p>
+    </footer>
+  </body>
+</html>

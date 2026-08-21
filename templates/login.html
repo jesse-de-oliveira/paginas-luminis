@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block content %}
+
+  <div class="login-wrapper">
+
+    <div class="login-image-side">
+      <img src="https://images.unsplash.com/photo-1506880018603-83d5b814b5a6?w=600&q=80" alt="Pessoa lendo um livro">
+    </div>
+
+    <div class="login-form-side">
+      
+      <h2 style="font-family: 'IM Fell English', serif; font-size: 2.2rem; color: #2c2c2c; margin-bottom: 5px;">
+        Bem-vindo(a) de volta!
+      </h2>
+      <p style="font-family: 'IM Fell English', serif; font-style: italic; color: #666; font-size: 1.1rem; margin-bottom: 30px;">
+        Litteris vita est.
+      </p>
+
+      <form method="POST" action="{{ url_for('login') }}">
+        
+        <div>
+          <input type="text" name="username" id="username" class="input-login" placeholder="Seu usuário" required>
+        </div>
+        
+        <div>
+          <input type="password" name="senha" id="senha" class="input-login" placeholder="Sua senha" required>
+        </div>
+        
+        <button type="submit" class="btn-login" style="margin-top: 15px;">Entrar</button>
+      </form>
+
+      <div style="margin-top: 30px; font-size: 0.95rem; color: #555;">
+        Ainda não tem conta? 
+        <a href="{{ url_for('register') }}" style="color: #4f7942; font-weight: bold; text-decoration: underline;">
+          Cadastre-se.
+        </a>
+      </div>
+
+    </div>
+
+  </div>
+
+{% endblock %}

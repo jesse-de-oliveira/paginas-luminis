@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+{% block content %}
+
+  <div class="greeting mt-24">
+    Salve, lector avidus, <strong>{{ user.username }}</strong>.
+  </div>
+
+  {% set total_hoje = namespace(n=0) %}
+  {% for livro in livros %}
+    {% for leitura in livro.leituras %}
+      {% if leitura.data.date() == hoje %}
+        {% set total_hoje.n = total_hoje.n + (leitura.paginas_lidas or 0) %}
+      {% endif %}
+    {% endfor %}
+  {% endfor %}
+
+  {% set em_andamento = livros | selectattr('status.name', 'equalto', 'EM_ANDAMENTO') | list %}
+  <p style="font-size: 10px; color: red;">Livros encontrados: {{ livros | map(attribute='status.name') | list }}</p>
+
+  <div class="dashboard-banner">
+    <div class="dashboard-grid">
+      
+      <div class="dashboard-card">
+        <h3>📄 Lidas Hoje</h3>
+        <div class="big-number">{{ total_hoje.n }}</div>
+      </div>
+
+      <div class="dashboard-card">
+        <h3>📖 Em Andamento</h3>
+        <div class="big-number">{{ em_andamento | length }}</div>
+      </div>
+
+      <div class="dashboard-card">
+        <h3>🎯 Desafios Pendentes</h3>
+        {% if desafios_pendentes %}
+          <ul style="list-style: none; padding: 0; text-align: left; margin-top: 14px;">
+            {% for d in desafios_pendentes %}
+              <li style="font-size:0.85rem; color:#3a3a20; padding: 6px 0; border-bottom: 1px dashed #c8a96e;">
+                - {{ d.descricao }}
+              </li>
+            {% endfor %}
+          </ul>
+        {% else %}
+          <p style="font-size:0.85rem; color:#666; margin-top: 14px;">Todos concluídos!</p>
+        {% endif %}
+      </div>
+
+    </div>
+  </div>
+
+  <h2 class="section-title">Continue Lendo</h2>
+  {% if em_andamento %}
+    <div style="display: flex; flex-direction: column; gap: 12px;">
+      {% for livro in em_andamento %}
+        <div class="card-light" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;">
+          <div style="flex: 1; min-width: 250px;">
+            <h3 style="font-family: 'IM Fell English', serif; font-size: 1.2rem; margin-bottom: 6px;">
+              <a href="{{ url_for('ver_livro', livro_id=livro.id) }}" style="color: #3a3a20; text-decoration: none;">
+                {{ livro.titulo }}
+              </a>
+            </h3>
+            
+            {% set total_lido = namespace(n=0) %}
+            {% for leitura in livro.leituras %}
+              {% set total_lido.n = total_lido.n + (leitura.paginas_lidas or 0) %}
+            {% endfor %}
+            {% set progresso = (total_lido.n / livro.total_paginas * 100) if livro.total_paginas else 0 %}
+
+            <div class="progress-bar-wrap">
+              <div class="progress-bar-fill" style="width: {{ progresso | round(1) }}%;"></div> 
+            </div>
+          </div>
+          
+          <div>
+            <a href="{{ url_for('ver_livro', livro_id=livro.id) }}" class="btn btn-sm btn-green">Atualizar</a>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="card-light text-center">
+      <p style="font-size:0.9rem; color:#666;">Nenhum livro em andamento no momento.</p>
+    </div>
+  {% endif %}
+
+  <h2 class="section-title">Desafios Pendentes</h2>
+  <div class="card-light">
+    {% if desafios_pendentes %}
+      {% for d in desafios_pendentes %}
+        <form method="post" action="{{ url_for('concluir_desafio', desafio_id=d.id) }}">
+          <label class="desafio-label" style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+            <input type="checkbox" onchange="this.form.submit()">
+            {{ d.descricao }}
+          </label>
+        </form>
+      {% endfor %}
+    {% else %}
+      <p style="font-size:0.9rem; color:#666; text-align: center;">Nenhum desafio no momento. Aproveite sua leitura!</p>
+    {% endif %}
+  </div>
+
+  <div class="flex-row mt-24 mb-16" style="justify-content:center; gap:14px; flex-wrap:wrap;">
+    <a href="{{ url_for('listar_livros') }}" class="btn btn-green">📚 Tracker</a>
+    <a href="{{ url_for('diario') }}" class="btn btn-secondary">📓 Diário</a>
+    <a href="{{ url_for('conquistas') }}" class="btn btn-secondary">🏆 Conquistas</a>
+  </div>
+
+{% endblock %}

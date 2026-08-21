@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block content %}
+
+  <a href="{{ url_for('diario') }}" style="font-size:0.85rem; color:#2ecc71; text-decoration:none;">← Voltar ao Diário</a>
+
+  <h1 class="page-title" style="margin-top:16px;">Nova Entrada no Diário</h1>
+
+  <div class="card-light" style="max-width:600px; margin: 0 auto;">
+    <form method="post">
+      <div class="form-group">
+        <label>Título da entrada</label>
+        <input type="text" name="titulo" placeholder="Ex: O que aprendi hoje..." required>
+      </div>
+      <div class="form-group">
+        <label>Tipo</label>
+        <select name="tipo">
+          <option value="resumo">Resumo</option>
+          <option value="reflexao">Reflexão</option>
+          <option value="comentario">Comentário</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Livro <small style="color:#888;">(opcional)</small></label>
+        <select name="livro_id">
+          <option value="">— Nenhum —</option>
+          {% for livro in livros %}
+            <option value="{{ livro.id }}">{{ livro.titulo }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Conteúdo</label>
+        <textarea name="conteudo" placeholder="Escreva aqui sua reflexão, resumo ou comentário..." required></textarea>
+      </div>
+      <button type="submit" class="btn btn-green">Salvar entrada</button>
+    </form>
+  </div>
+
+{% endblock %}

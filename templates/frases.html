@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block content %}
+
+  <h1 class="page-title">Frases Favoritas</h1>
+  <p class="page-subtitle">trechos marcantes das suas leituras</p>
+
+  {% if frases %}
+    {% for f in frases %}
+      <div class="frase-item">
+        "{{ f.texto }}"
+        <div class="frase-author">
+          {% if f.nome_autor %}— {{ f.nome_autor }}{% endif %}
+          {% if f.pagina %} · p. {{ f.pagina }}{% endif %}
+        </div>
+      </div>
+    {% endfor %}
+  {% else %}
+    <p style="text-align:center; color:#888; font-size:0.9rem; margin-bottom:24px;">
+      Nenhuma frase salva ainda.
+    </p>
+  {% endif %}
+
+  <p class="section-title">Salvar frase marcante</p>
+
+  <div class="card-light" style="max-width:560px; margin: 0 auto;">
+    <form method="post" action="{{ url_for('add_frase') }}">
+      <div class="form-group">
+        <label>Frase</label>
+        <textarea name="texto" placeholder="Digite a frase marcante..." required></textarea>
+      </div>
+      <div class="form-group">
+        <label>Livro</label>
+        <select name="livro_id" required>
+          {% for livro in livros %}
+            <option value="{{ livro.id }}">{{ livro.titulo }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Autor / Personagem <small style="color:#888;">(opcional)</small></label>
+        <input type="text" name="nome_autor" placeholder="Ex: Gandalf">
+      </div>
+      <div class="form-group">
+        <label>Página <small style="color:#888;">(opcional)</small></label>
+        <input type="number" name="pagina" placeholder="Ex: 142">
+      </div>
+      <button type="submit" class="btn btn-green">Guardar frase</button>
+    </form>
+  </div>
+
+{% endblock %}

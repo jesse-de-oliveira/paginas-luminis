@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block content %}
+
+  <h1 class="page-title">Desafios</h1>
+  <p class="page-subtitle">pequenos passos para criar o hábito da leitura</p>
+
+  {% set pendentes = [] %}
+  {% set concluidos = [] %}
+  {% for d in desafios %}
+    {% set ud = usuario_desafios.get(d.id) %}
+    {% if ud and ud.concluido %}
+      {% set _ = concluidos.append(d) %}
+    {% else %}
+      {% set _ = pendentes.append(d) %}
+    {% endif %}
+  {% endfor %}
+
+  <p class="section-title">Pendentes</p>
+
+  {% if pendentes %}
+    {% for d in pendentes %}
+      <form method="post" action="{{ url_for('concluir_desafio', desafio_id=d.id) }}">
+        <div class="desafio-item">
+          <div class="desafio-check"></div>
+          <span class="desafio-text">{{ d.descricao }}</span>
+          <button type="submit" class="btn btn-green btn-sm" style="margin-left:auto;">Marcar feito</button>
+        </div>
+      </form>
+    {% endfor %}
+  {% else %}
+    <p style="font-size:0.88rem; color:#888;">Todos os desafios concluídos!</p>
+  {% endif %}
+
+  {% if concluidos %}
+    <p class="section-title">Concluídos</p>
+    {% for d in concluidos %}
+      <form method="post" action="{{ url_for('concluir_desafio', desafio_id=d.id) }}">
+        <div class="desafio-item" style="opacity:0.6;">
+          <div class="desafio-check done">✓</div>
+          <span class="desafio-text" style="text-decoration:line-through;">{{ d.descricao }}</span>
+          <button type="submit" class="btn btn-secondary btn-sm" style="margin-left:auto;">Desfazer</button>
+        </div>
+      </form>
+    {% endfor %}
+  {% endif %}
+
+{% endblock %}
