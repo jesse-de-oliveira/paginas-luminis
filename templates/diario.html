@@ -12,10 +12,14 @@
     {% for e in entradas %}
       <div class="diario-item">
         <div class="diario-item-info">
-          <div class="titulo">{{ e.titulo }} <span style="font-size:0.78rem; color:#888; font-weight:400;">— {{ e.tipo.value }}</span></div>
+          <div class="titulo">
+            <a href="{{ url_for('ver_diario', diario_id=e.id) }}" style="color:#2c2c2c; text-decoration:none;">{{ e.titulo }}</a>
+            <span style="font-size:0.78rem; color:#888; font-weight:400;">— {{ e.tipo.value }}</span>
+          </div>
           <div class="meta">{{ e.data.strftime('%d/%m/%Y') }}</div>
         </div>
         <div class="diario-item-date">{{ e.data.strftime('%d / %m / %Y') }}</div>
+        <a href="{{ url_for('ver_diario', diario_id=e.id) }}" class="btn btn-sm btn-green">Ler entrada →</a>
       </div>
     {% endfor %}
   {% else %}

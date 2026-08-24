@@ -41,6 +41,7 @@
               <option value="Já Lido">Já Lido</option>
             </select>
           </form>
+          <a href="{{ url_for('ver_livro', livro_id=livro.id) }}" class="btn btn-sm btn-green">📖 Registrar leitura</a>
         </div>
       {% else %}
         <p style="font-size:0.82rem; color:#888;">Nenhum livro aqui.</p>
@@ -64,6 +65,7 @@
               <option value="Já Lido">Já Lido</option>
             </select>
           </form>
+          <a href="{{ url_for('ver_livro', livro_id=livro.id) }}" class="btn btn-sm btn-green">📖 Registrar leitura</a>
         </div>
       {% else %}
         <p style="font-size:0.82rem; color:#888;">Nenhum livro aqui.</p>
@@ -87,6 +89,7 @@
               <option value="Já Lido" selected>Já Lido</option>
             </select>
           </form>
+          <a href="{{ url_for('ver_livro', livro_id=livro.id) }}" class="btn btn-sm btn-green">📖 Registrar leitura</a>
         </div>
       {% else %}
         <p style="font-size:0.82rem; color:#888;">Nenhum livro aqui.</p>

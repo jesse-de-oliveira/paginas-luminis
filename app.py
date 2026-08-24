@@ -250,6 +250,18 @@ def novo_diario():
     livros = models.Livro.query.filter_by(usuario_id=user.id).all()
     return render_template('novo_diario.html', livros=livros, user=user)
 
+@app.route('/diario/<int:diario_id>')
+def ver_diario(diario_id):
+    user = current_user()
+    if not user:
+        return redirect(url_for('login'))
+
+    entrada = models.Diario.query.get_or_404(diario_id)
+    if entrada.usuario_id != user.id:
+        return 'Acesso negado!', 403
+
+    return render_template('ver_diario.html', entrada=entrada, user=user)
+
 # ====================== FRASES FAVORITAS ======================
 @app.route('/frases')
 def listar_frases():

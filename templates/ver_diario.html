@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+
+  <a href="{{ url_for('diario') }}" style="font-size:0.85rem; color:#2ecc71; text-decoration:none;">← Voltar ao Diário</a>
+
+  <div class="card-light" style="margin-top: 16px; max-width:700px; margin-left:auto; margin-right:auto;">
+    <h1 class="page-title" style="margin-bottom:4px;">{{ entrada.titulo }}</h1>
+    <p class="page-subtitle">{{ entrada.tipo.value }} — {{ entrada.data.strftime('%d/%m/%Y') }}</p>
+
+    {% if entrada.livro %}
+      <p style="font-size:0.85rem; color:#666; margin-bottom:16px;">
+        <strong>Livro:</strong> {{ entrada.livro.titulo }}
+      </p>
+    {% endif %}
+
+    <div style="white-space: pre-wrap; line-height:1.6; font-size:0.95rem; color:#333;">
+      {{ entrada.conteudo }}
+    </div>
+  </div>
+
+{% endblock %}
