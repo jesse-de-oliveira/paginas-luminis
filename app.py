@@ -7,7 +7,10 @@ app = Flask(__name__)
 app.secret_key = os.environ.get('SECRET_KEY', '3f9a8b2c1d4e7f')
 
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(BASE_DIR, 'database.db')
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get(
+    'DATABASE_URL',
+    'sqlite:///' + os.path.join(BASE_DIR, 'database.db')
+)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 from models import db, Usuario, Livro, StatusLeitura 
