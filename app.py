@@ -12,6 +12,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get(
     'sqlite:///' + os.path.join(BASE_DIR, 'database.db')
 )
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SQLALCHEMY_ENGINE_OPTIONS'] = {"pool_pre_ping": True, "pool_recycle": 300}
 
 from models import db, Usuario, Livro, StatusLeitura 
 import models
