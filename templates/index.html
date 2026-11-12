@@ -15,7 +15,6 @@
   {% endfor %}
 
   {% set em_andamento = livros | selectattr('status.name', 'equalto', 'EM_ANDAMENTO') | list %}
-  <p style="font-size: 10px; color: red;">Livros encontrados: {{ livros | map(attribute='status.name') | list }}</p>
 
   <div class="dashboard-banner">
     <div class="dashboard-grid">
