@@ -3,56 +3,124 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Páginas Luminis — Documentação do Projeto</title>
+  <title>Páginas Luminis — Portfólio do Projeto</title>
   <style>
-    body {
-      font-family: 'Georgia', serif;
-      background-color: #f5f5dc;
-      color: #2c2c2c;
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 32px 20px;
-      line-height: 1.6;
-    }
-    h1 { color: #376015; }
-    h2 { color: #2ecc71; border-bottom: 1px solid #c8a96e; padding-bottom: 6px; margin-top: 40px; }
-    img { max-width: 100%; border: 1px solid #ccc; border-radius: 6px; margin: 16px 0; }
-    .links a { display: inline-block; margin-right: 16px; color: #2ecc71; font-weight: bold; }
-    .feature { margin-bottom: 16px; }
+    :root { --bg:#f5f5dc; --ink:#2c2c2c; --green:#2ecc71; --dark:#376015; --line:#c8a96e; --card:#fffdf0; }
+    * { box-sizing: border-box; }
+    body { font-family: Georgia, serif; background: var(--bg); color: var(--ink); margin: 0; line-height: 1.6; }
+    header.hero { background: var(--dark); color: #fff; text-align: center; padding: 48px 20px; }
+    header.hero h1 { margin: 0 0 8px; font-size: 2.4rem; }
+    header.hero p { margin: 0 auto; max-width: 640px; opacity: .92; }
+    nav { background: var(--card); border-bottom: 1px solid var(--line); text-align: center; padding: 10px; position: sticky; top: 0; }
+    nav a { color: var(--dark); margin: 0 10px; text-decoration: none; font-weight: bold; font-size: .95rem; }
+    main { max-width: 1000px; margin: 0 auto; padding: 0 20px 48px; }
+    h2 { color: var(--dark); border-bottom: 2px solid var(--line); padding-bottom: 6px; margin-top: 48px; }
+    .notice { background: #fff3cd; border: 1px solid #e0c46c; border-radius: 8px; padding: 14px 18px; margin: 28px 0 0; }
+    .links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; justify-content: center; }
+    .btn { display: inline-block; background: var(--green); color: #fff; text-decoration: none; font-weight: bold; padding: 10px 18px; border-radius: 6px; }
+    .btn.alt { background: #fff; color: var(--dark); border: 1px solid var(--line); }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+    .card { background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 16px; }
+    .card h3 { margin-top: 0; color: var(--dark); }
+    figure { margin: 0; }
+    figure img { width: 100%; border: 1px solid #ccc; border-radius: 6px; }
+    figcaption { font-size: .9rem; color: #555; margin-top: 6px; text-align: center; }
+    table { width: 100%; border-collapse: collapse; background: var(--card); }
+    th, td { border: 1px solid var(--line); padding: 10px; text-align: left; vertical-align: top; }
+    th { background: #efe9c8; }
+    .table-wrap { overflow-x: auto; }
+    img.diagram { max-width: 100%; border: 1px solid #ccc; border-radius: 6px; margin: 12px 0; }
+    footer { text-align: center; font-style: italic; color: #777; padding: 24px; }
   </style>
 </head>
 <body>
 
+<header class="hero">
   <h1>📚 Páginas Luminis</h1>
-  <p>Um website interativo criado para incentivar o hábito da leitura no Brasil, oferecendo desafios de leitura, diário de reflexões, frases favoritas e acompanhamento de progresso.</p>
-
+  <p>Um website para incentivar o hábito da leitura: organize seus livros, registre seu progresso, escreva um diário, guarde frases favoritas e conquiste desafios.</p>
   <div class="links">
-    <a href="https://github.com/jesse-de-oliveira/paginas-luminis">Repositório no GitHub</a>
-    <a href="https://paginas-luminis.onrender.com/">Aplicação ao vivo</a>
+    <a class="btn" href="https://paginas-luminis.onrender.com/">Abrir a aplicação</a>
+    <a class="btn alt" href="https://github.com/jesse-de-oliveira/paginas-luminis">Código no GitHub</a>
+  </div>
+</header>
+
+<nav>
+  <a href="#problema">Problema</a>
+  <a href="#funcionalidades">Funcionalidades</a>
+  <a href="#construcao">Construção</a>
+  <a href="#qualidade">Testes e usabilidade</a>
+  <a href="#diagramas">Diagramas</a>
+  <a href="#autores">Autores</a>
+</nav>
+
+<main>
+
+  <div class="notice">
+    ⏳ <strong>Aviso sobre a aplicação ao vivo:</strong> ela roda em hospedagem gratuita. Se estiver parada há alguns minutos, a primeira visita pode demorar cerca de 1 minuto ou mostrar o erro <strong>502 Bad Gateway</strong>. É normal: aguarde alguns segundos e <strong>recarregue a página (F5)</strong>.
   </div>
 
-  <h2>O Problema</h2>
-  <p>Segundo a pesquisa Retratos da Leitura no Brasil (2024), o país perdeu 6,7 milhões de leitores nos últimos quatro anos. Pela primeira vez, a maioria da população (53%) não leu nem parte de um livro nos três meses anteriores à pesquisa.</p>
+  <h2 id="problema">O problema</h2>
+  <p>Segundo a pesquisa Retratos da Leitura no Brasil (2024), o país perdeu 6,7 milhões de leitores em quatro anos. Pela primeira vez, a maioria da população (53%) não leu nem parte de um livro nos três meses anteriores à pesquisa, e apenas 27% leram um livro inteiro no período.</p>
+  <p>O Páginas Luminis responde a esse cenário com uma proposta simples: tornar a leitura mais envolvente e constante, especialmente para quem ainda não lê com frequência, usando pequenos desafios, registro de progresso e recompensas leves.</p>
 
-  <h2>Funcionalidades</h2>
-  <div class="feature">📘 <strong>Desafios de Leitura</strong> — pequenos desafios diários/semanais para incentivar constância.</div>
-  <div class="feature">📓 <strong>Diário de Leitura</strong> — registro de resumos, reflexões e comentários.</div>
-  <div class="feature">📖 <strong>Frases Favoritas</strong> — coleção pessoal de trechos marcantes.</div>
-  <div class="feature">📊 <strong>Tracker de Leitura</strong> — organização de livros por status, com progresso.</div>
-  <div class="feature">🏅 <strong>Conquistas</strong> — gamificação leve para reforçar motivação.</div>
+  <h2 id="funcionalidades">Funcionalidades</h2>
+  <div class="grid">
+    <div class="card"><h3>🏠 Dashboard</h3><p>Resumo do dia: páginas lidas hoje, livros em andamento e desafios pendentes.</p></div>
+    <div class="card"><h3>📚 Tracker de leitura</h3><p>Livros organizados em Quero Ler, Em Andamento e Já Lido, com barra de progresso por páginas.</p></div>
+    <div class="card"><h3>📓 Diário de leitura</h3><p>Resumos, reflexões e comentários, com página própria para reler cada entrada.</p></div>
+    <div class="card"><h3>💬 Frases favoritas</h3><p>Trechos marcantes salvos e organizados por livro.</p></div>
+    <div class="card"><h3>🎯 Desafios</h3><p>Desafios diários e semanais que podem ser marcados como concluídos.</p></div>
+    <div class="card"><h3>🏆 Conquistas</h3><p>Recompensas leves, como concluir o primeiro livro, para reforçar a motivação.</p></div>
+  </div>
 
-  <h2>Diagrama de Casos de Uso</h2>
-  <img src="imagens/diagrama-casos-uso.PNG" alt="Diagrama de Casos de Uso">
+  <h2>A aplicação por dentro</h2>
+  <div class="grid">
+    <figure><img src="imagens/dashboard.png" alt="Dashboard"><figcaption>Dashboard</figcaption></figure>
+    <figure><img src="imagens/tracker.png" alt="Tracker de leitura"><figcaption>Tracker de leitura</figcaption></figure>
+    <figure><img src="imagens/registrar-leitura.png" alt="Registro de leitura"><figcaption>Registro de leitura e progresso</figcaption></figure>
+    <figure><img src="imagens/diario.png" alt="Diário de leitura"><figcaption>Diário de leitura</figcaption></figure>
+    <figure><img src="imagens/frases.png" alt="Frases favoritas"><figcaption>Frases favoritas</figcaption></figure>
+    <figure><img src="imagens/desafios.png" alt="Desafios"><figcaption>Desafios</figcaption></figure>
+    <figure><img src="imagens/conquistas.png" alt="Conquistas"><figcaption>Conquistas</figcaption></figure>
+  </div>
 
-  <h2>Diagrama de Classes</h2>
-  <img src="imagens/diagrama-classes.PNG" alt="Diagrama de Classes">
+  <h2 id="construcao">Como foi construído</h2>
+  <div class="grid">
+    <div class="card"><h3>Aplicação</h3><p>Python 3, Flask, Jinja2 e JavaScript. Autenticação com sessões e senhas protegidas por hash (Werkzeug).</p></div>
+    <div class="card"><h3>Banco de dados</h3><p>SQLAlchemy com SQLite em desenvolvimento e PostgreSQL (Neon) em produção, escolhido por variável de ambiente.</p></div>
+    <div class="card"><h3>Hospedagem</h3><p>Render (Web Service com Gunicorn), com deploy automático a cada push no GitHub.</p></div>
+  </div>
 
-  <h2>Diagrama Entidade-Relacionamento (DER)</h2>
-  <img src="imagens/der.PNG" alt="DER">
+  <h2 id="qualidade">Testes e usabilidade</h2>
+  <p><strong>Testes automatizados:</strong> 9 testes com pytest cobrindo cadastro, login, adição e listagem de livros e registro de leitura, incluindo a conclusão automática do livro e a validação de entradas inválidas. Os testes usam um banco em memória, sem afetar dados reais.</p>
+  <p><strong>Teste de usabilidade:</strong> uma pessoa executou um roteiro de 5 tarefas por chamada de vídeo, sem receber dicas. Os problemas encontrados viraram as melhorias abaixo.</p>
+  <div class="table-wrap">
+    <table>
+      <tr><th>Problema observado</th><th>Melhoria implementada</th></tr>
+      <tr><td>Registrar leitura era quase impossível: o caminho até o formulário não era óbvio</td><td>Botão "Registrar leitura" em cada livro do Tracker</td></tr>
+      <tr><td>Era difícil encontrar onde adicionar um livro</td><td>Atalho "+ Adicionar Livro" na página inicial</td></tr>
+      <tr><td>Não havia como abrir uma entrada do diário já criada</td><td>Nova página de leitura da entrada e botão "Ler entrada"</td></tr>
+    </table>
+  </div>
 
-  <footer style="margin-top:48px; text-align:center; font-style:italic; color:#888;">
-    Litteris vita est.
-  </footer>
+  <h2 id="diagramas">Diagramas</h2>
+  <h3>Casos de uso</h3>
+  <img class="diagram" src="imagens/diagrama-casos-uso.PNG" alt="Diagrama de casos de uso">
+  <h3>Diagrama de classes</h3>
+  <img class="diagram" src="imagens/diagrama-classes.PNG" alt="Diagrama de classes">
+  <h3>Diagrama entidade-relacionamento (DER)</h3>
+  <img class="diagram" src="imagens/der.PNG" alt="DER">
+
+  <h2 id="autores">Autores</h2>
+  <p>Projeto de extensão do curso de Engenharia de Software (EaD) da UniFil, desenvolvido por <strong>Jesse de Oliveira</strong> e <strong>Vincenzo Izzo</strong>.</p>
+  <div class="links">
+    <a class="btn" href="https://paginas-luminis.onrender.com/">Aplicação ao vivo</a>
+    <a class="btn alt" href="https://github.com/jesse-de-oliveira/paginas-luminis">Repositório</a>
+  </div>
+
+</main>
+
+<footer>Litteris vita est.</footer>
 
 </body>
 </html>
